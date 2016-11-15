@@ -42,6 +42,7 @@ namespace Uppgift3
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtContactName = new System.Windows.Forms.TextBox();
             this.btnBeginEdit = new System.Windows.Forms.Button();
             this.btnFinishEdit = new System.Windows.Forms.Button();
             this.btnCancelEdit = new System.Windows.Forms.Button();
@@ -57,12 +58,14 @@ namespace Uppgift3
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblContactName = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.pnlTop.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlLeft
@@ -154,11 +157,7 @@ namespace Uppgift3
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
-            this.panel1.Controls.Add(this.txtName);
-            this.panel1.Controls.Add(this.lblContactName);
-            this.panel1.Controls.Add(this.btnBeginEdit);
-            this.panel1.Controls.Add(this.btnFinishEdit);
-            this.panel1.Controls.Add(this.btnCancelEdit);
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.txtOtherAddress);
             this.panel1.Controls.Add(this.txtWorkAddress);
             this.panel1.Controls.Add(this.txtHomeAddress);
@@ -175,8 +174,24 @@ namespace Uppgift3
             this.panel1.Location = new System.Drawing.Point(160, 0);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel1.Size = new System.Drawing.Size(267, 369);
+            this.panel1.Size = new System.Drawing.Size(442, 369);
             this.panel1.TabIndex = 1;
+            // 
+            // txtContactName
+            // 
+            this.txtContactName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
+            this.txtContactName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtContactName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtContactName.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.txtContactName.ForeColor = System.Drawing.Color.White;
+            this.txtContactName.Location = new System.Drawing.Point(0, 0);
+            this.txtContactName.Name = "txtContactName";
+            this.txtContactName.ReadOnly = true;
+            this.txtContactName.Size = new System.Drawing.Size(360, 32);
+            this.txtContactName.TabIndex = 16;
+            this.txtContactName.Text = "Namn";
+            this.txtContactName.Visible = false;
+            this.txtContactName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // btnBeginEdit
             // 
@@ -186,9 +201,9 @@ namespace Uppgift3
             this.btnBeginEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnBeginEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBeginEdit.Image = global::Uppgift3.Properties.Resources.Contact_Edit_WF2;
-            this.btnBeginEdit.Location = new System.Drawing.Point(227, 5);
+            this.btnBeginEdit.Location = new System.Drawing.Point(43, 3);
             this.btnBeginEdit.Name = "btnBeginEdit";
-            this.btnBeginEdit.Size = new System.Drawing.Size(36, 31);
+            this.btnBeginEdit.Size = new System.Drawing.Size(25, 25);
             this.btnBeginEdit.TabIndex = 14;
             this.btnBeginEdit.UseVisualStyleBackColor = true;
             this.btnBeginEdit.Click += new System.EventHandler(this.button1_Click);
@@ -201,9 +216,9 @@ namespace Uppgift3
             this.btnFinishEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnFinishEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFinishEdit.Image = global::Uppgift3.Properties.Resources.Untitled1;
-            this.btnFinishEdit.Location = new System.Drawing.Point(227, 5);
+            this.btnFinishEdit.Location = new System.Drawing.Point(43, 3);
             this.btnFinishEdit.Name = "btnFinishEdit";
-            this.btnFinishEdit.Size = new System.Drawing.Size(36, 31);
+            this.btnFinishEdit.Size = new System.Drawing.Size(25, 25);
             this.btnFinishEdit.TabIndex = 15;
             this.btnFinishEdit.UseVisualStyleBackColor = true;
             this.btnFinishEdit.Visible = false;
@@ -217,9 +232,9 @@ namespace Uppgift3
             this.btnCancelEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnCancelEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelEdit.Image = global::Uppgift3.Properties.Resources.Cancel;
-            this.btnCancelEdit.Location = new System.Drawing.Point(189, 5);
+            this.btnCancelEdit.Location = new System.Drawing.Point(12, 3);
             this.btnCancelEdit.Name = "btnCancelEdit";
-            this.btnCancelEdit.Size = new System.Drawing.Size(36, 31);
+            this.btnCancelEdit.Size = new System.Drawing.Size(25, 25);
             this.btnCancelEdit.TabIndex = 15;
             this.btnCancelEdit.UseVisualStyleBackColor = true;
             this.btnCancelEdit.Visible = false;
@@ -369,30 +384,26 @@ namespace Uppgift3
             this.label1.Text = "Mobiltelefon";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblContactName
+            // panel2
             // 
-            this.lblContactName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
-            this.lblContactName.Font = new System.Drawing.Font("Segoe UI", 18F);
-            this.lblContactName.ForeColor = System.Drawing.Color.White;
-            this.lblContactName.Location = new System.Drawing.Point(0, 0);
-            this.lblContactName.Name = "lblContactName";
-            this.lblContactName.Size = new System.Drawing.Size(183, 35);
-            this.lblContactName.TabIndex = 1;
-            this.lblContactName.Text = "Namn";
-            this.lblContactName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.panel2.Controls.Add(this.btnCancelEdit);
+            this.panel2.Controls.Add(this.btnBeginEdit);
+            this.panel2.Controls.Add(this.btnFinishEdit);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(360, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(72, 35);
+            this.panel2.TabIndex = 2;
             // 
-            // txtName
+            // panel3
             // 
-            this.txtName.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtName.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.txtName.Location = new System.Drawing.Point(6, 8);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(177, 29);
-            this.txtName.TabIndex = 16;
-            this.txtName.Text = "Namn";
-            this.txtName.Visible = false;
-            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+            this.panel3.Controls.Add(this.txtContactName);
+            this.panel3.Controls.Add(this.panel2);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(10, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(432, 35);
+            this.panel3.TabIndex = 16;
             // 
             // View
             // 
@@ -404,7 +415,7 @@ namespace Uppgift3
             this.CaptionButtonColor = System.Drawing.Color.Black;
             this.CaptionButtonHoverColor = System.Drawing.Color.Gray;
             this.CaptionForeColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(427, 369);
+            this.ClientSize = new System.Drawing.Size(602, 369);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlLeft);
             this.DropShadow = true;
@@ -418,6 +429,9 @@ namespace Uppgift3
             this.pnlTop.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -430,7 +444,6 @@ namespace Uppgift3
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblContactName;
         private System.Windows.Forms.TextBox txtWorkPhone;
         private System.Windows.Forms.TextBox txtHomePhone;
         private System.Windows.Forms.TextBox txtMobilePhone;
@@ -447,6 +460,8 @@ namespace Uppgift3
         private System.Windows.Forms.Button btnAddContact;
         private System.Windows.Forms.Button btnCancelEdit;
         private System.Windows.Forms.Button btnFinishEdit;
-        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtContactName;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel2;
     }
 }

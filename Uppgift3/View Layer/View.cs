@@ -13,15 +13,6 @@ namespace Uppgift3
     public partial class View : Syncfusion.Windows.Forms.MetroForm, IView
     {
         private Model m;
-
-        public string setTxtPhoneWork
-        { get { return txtMobilePhone.Text; } set { txtMobilePhone.Text = value; } }
-        public string setTxtPhoneHome { get { return txtHomePhone.Text; } set { txtHomePhone.Text = value; } }
-        public string setTxtMobilePhone { get { return txtWorkPhone.Text; } set { txtWorkPhone.Text = value; } }
-        public string setLblTitleName { get { return lblContactName.Text; } set { lblContactName.Text = value; } }
-        public string setTxtHomeAddress { get { return txtHomeAddress.Text; } set { txtHomeAddress.Text = value; } }
-        public string setTxtWorkAddress { get { return txtWorkAddress.Text; } set { txtWorkAddress.Text = value; } }
-        public string setTxtOtherAddress { get { return txtOtherAddress.Text; } set { txtOtherAddress.Text = value; } }
         public View()
         {
             InitializeComponent();
@@ -29,6 +20,46 @@ namespace Uppgift3
             m = new Model(this);
             m.GetNameData();
         }
+
+        public string setTxtContactName
+        {
+            get { return txtContactName.Text; }
+            set { txtContactName.Text = value; }
+        }
+
+        public string setTxtPhoneWork
+        {
+            get { return txtMobilePhone.Text; }
+            set { txtMobilePhone.Text = value; }
+        }
+        public string setTxtPhoneHome
+        {
+            get { return txtHomePhone.Text; }
+            set { txtHomePhone.Text = value; }
+        }
+        public string setTxtMobilePhone
+        {
+            get { return txtWorkPhone.Text; }
+            set { txtWorkPhone.Text = value; }
+        }
+
+        public string setTxtHomeAddress
+        {
+            get { return txtHomeAddress.Text; }
+            set { txtHomeAddress.Text = value; }
+        }
+        public string setTxtWorkAddress
+        {
+            get { return txtWorkAddress.Text; }
+            set { txtWorkAddress.Text = value; }
+        }
+
+        public string setTxtOtherAddress
+        {
+            get { return txtOtherAddress.Text; }
+            set { txtOtherAddress.Text = value; }
+        }
+
         public void DataSource(string value)
         {
             dataGridView.Rows.Add(value);
@@ -44,37 +75,40 @@ namespace Uppgift3
             btnCancelEdit.Visible = true;
             SetTextBoxEnabled(false, Color.WhiteSmoke);
         }
-        public void SetTextBoxEnabled(bool trueFalse, Color color)
+        public void SetTextBoxEnabled(bool _boolValue, Color _color)
         {
-            txtOtherAddress.ReadOnly = trueFalse;
-            txtWorkAddress.ReadOnly = trueFalse;
-            txtHomeAddress.ReadOnly = trueFalse;
-            txtWorkPhone.ReadOnly = trueFalse;
-            txtMobilePhone.ReadOnly = trueFalse;
-            txtHomePhone.ReadOnly = trueFalse;
-            
-            txtOtherAddress.BackColor = color;
-            txtWorkAddress.BackColor = color;
-            txtHomeAddress.BackColor = color;
-            txtWorkPhone.BackColor = color;
-            txtMobilePhone.BackColor = color;
-            txtHomePhone.BackColor = color;
+            txtContactName.ReadOnly = _boolValue;
+
+            txtOtherAddress.ReadOnly = _boolValue;
+            txtWorkAddress.ReadOnly = _boolValue;
+            txtHomeAddress.ReadOnly = _boolValue;
+
+            txtWorkPhone.ReadOnly = _boolValue;
+            txtMobilePhone.ReadOnly = _boolValue;
+            txtHomePhone.ReadOnly = _boolValue;
+
+            txtContactName.BackColor = _color;
+
+            txtOtherAddress.BackColor = _color;
+            txtWorkAddress.BackColor = _color;
+            txtHomeAddress.BackColor = _color;
+
+            txtWorkPhone.BackColor = _color;
+            txtMobilePhone.BackColor = _color;
+            txtHomePhone.BackColor = _color;
+
         }
         private void btnFinishEdit_Click(object sender, EventArgs e)
         {
-            lblContactName.Visible = true;
-
-            txtName.Visible = false;
+            txtContactName.Visible = false;
 
             btnCancelEdit.Visible = false; btnFinishEdit.Visible = false;
             SetTextBoxEnabled(true, Color.FromArgb(41, 143, 204));
-            m.EditContact(lblContactName.Text);
+            m.EditContact(txtContactName.Text);
         }
         private void btnCancelEdit_Click(object sender, EventArgs e)
         {
-            lblContactName.Visible = true;
-
-            txtName.Visible = false;
+            txtContactName.Visible = false;
 
             btnCancelEdit.Visible = false; btnFinishEdit.Visible = false;
             SetTextBoxEnabled(true, Color.FromArgb(41, 143, 204));
@@ -83,9 +117,8 @@ namespace Uppgift3
 
         private void btnAddContact_Click(object sender, EventArgs e)
         {
-            lblContactName.Visible = false;
-            txtName.Visible = true;
-            txtName.BringToFront();
+            //txtContactName.Visible = true;
+            //txtContactName.BringToFront();
 
             btnFinishEdit.Visible = true;
             btnFinishEdit.BringToFront();
@@ -93,15 +126,12 @@ namespace Uppgift3
 
             SetTextBoxEnabled(false, Color.WhiteSmoke);
 
-            txtOtherAddress.Text = null;
-            txtWorkAddress.Text = null;
-            txtHomeAddress.Text = null;
-            txtWorkPhone.Text = null;
-            txtMobilePhone.Text = null;
-            txtHomePhone.Text = null;
-
-
-
+            //txtOtherAddress.Text = null;
+            //txtWorkAddress.Text = null;
+            //txtHomeAddress.Text = null;
+            //txtWorkPhone.Text = null;
+            //txtMobilePhone.Text = null;
+            //txtHomePhone.Text = null;
         }
 
         private void txtName_TextChanged(object sender, EventArgs e)

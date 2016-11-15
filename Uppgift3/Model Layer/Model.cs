@@ -17,37 +17,38 @@ namespace Uppgift3.Model_Layer
 
         public void GetNameData()
         {
-            using (var db = new ContactsDataModel())
+            var db = new ContactsDataModel();
+            try
             {
-                var result = from c in db.Contacts
-                             select c;
-
-                List<Contacts> list = result.ToList();
-
-                foreach (Contacts item in list)
+                foreach (Contacts item in (from c in db.Contacts select c).ToList())
                 {
-                    view.DataSource(item.FirstName + " " + item.LastName);
+                    Task.Factory.StartNew(() => view.DataSource(string.Format("{0} {1}", item.FirstName, item.LastName))).Wait();
+                }
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    var t = Task.Factory.StartNew(() => db.Dispose());
+                    t.Wait();
                 }
             }
         }
 
         public void GetContactInfo(string name)
         {
-            using (var db = new ContactsDataModel())
+            var db = new ContactsDataModel();
+            try
             {
-                int ove = name.LastIndexOf(' ');
-                string _name = name.Remove(ove);
-                string _lastName = name.Remove(0, ove).Trim();
+                string _name = name.Remove(name.LastIndexOf(' '));
+                string _lastName = name.Remove(0, name.LastIndexOf(' ')).Trim();
 
-                var resultat = from c in db.Contacts
-                               where c.FirstName == _name && c.LastName == _lastName
-                               select c;
-
-                List<Contacts> lista = resultat.ToList();
-
-                foreach (var item in lista)
+                foreach (var item in (from c in db.Contacts
+                                      where c.FirstName == _name
+                                      && c.LastName == _lastName
+                                      select c).ToList())
                 {
-                    view.setLblTitleName = item.FirstName + " " + item.LastName;
+                    view.setTxtContactName = string.Format("{0} {1}", item.FirstName, item.LastName);
                     view.setTxtMobilePhone = item.MobilePhone;
                     view.setTxtPhoneWork = item.WorkPhone;
                     view.setTxtPhoneHome = item.HomePhone;
@@ -56,32 +57,44 @@ namespace Uppgift3.Model_Layer
                     view.setTxtOtherAddress = item.OtherAddress;
                 }
             }
+            finally
+            {
+                if (db != null)
+                {
+                    var t = Task.Factory.StartNew(() => db.Dispose());
+                    t.Wait();
+                }
+            }
         }
 
         public void EditContact(string name)
         {
-            using (var db = new ContactsDataModel())
+            var db = new ContactsDataModel();
+            try
             {
-
                 int ove = name.LastIndexOf(' ');
                 string _name = name.Remove(ove);
                 string _lastName = name.Remove(0, ove).Trim();
 
                 var resultat = from c in db.Contacts
-                               where c.FirstName == _name && c.LastName == _lastName
-                               select c;
+                               where c.FirstName == _name && c.LastName == _lastName select c;
+                resultat.Single().MobilePhone = view.setTxtMobilePhone;
+                resultat.Single().WorkPhone = view.setTxtPhoneWork;
+                resultat.Single().HomePhone = view.setTxtPhoneHome;
+                resultat.Single().HomeAddress = view.setTxtHomeAddress;
+                resultat.Single().WorkAddress = view.setTxtWorkAddress;
+                resultat.Single().OtherAddress = view.setTxtOtherAddress;
 
-
-                Contacts item = resultat.Single();
-
-                item.MobilePhone = view.setTxtMobilePhone;
-                item.WorkPhone = view.setTxtPhoneWork;
-                item.HomePhone = view.setTxtPhoneHome;
-                item.HomeAddress = view.setTxtHomeAddress;
-                item.WorkAddress = view.setTxtWorkAddress;
-                item.OtherAddress = view.setTxtOtherAddress;
-
-                db.SaveChanges();
+                var t = Task.Factory.StartNew(() => db.SaveChanges());
+                t.Wait();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    var t1 = Task.Factory.StartNew(() => db.Dispose());
+                    t1.Wait();
+                }
             }
         }
     }
