@@ -38,9 +38,13 @@ namespace Uppgift3
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.pnlTop = new System.Windows.Forms.Panel();
+            this.btnAddContact = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnBeginEdit = new System.Windows.Forms.Button();
+            this.btnFinishEdit = new System.Windows.Forms.Button();
+            this.btnCancelEdit = new System.Windows.Forms.Button();
             this.txtOtherAddress = new System.Windows.Forms.TextBox();
             this.txtWorkAddress = new System.Windows.Forms.TextBox();
             this.txtHomeAddress = new System.Windows.Forms.TextBox();
@@ -54,10 +58,7 @@ namespace Uppgift3
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblContactName = new System.Windows.Forms.Label();
-            this.btnFinishEdit = new System.Windows.Forms.Button();
-            this.btnCancelEdit = new System.Windows.Forms.Button();
-            this.btnBeginEdit = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.pnlTop.SuspendLayout();
@@ -71,7 +72,7 @@ namespace Uppgift3
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(160, 347);
+            this.pnlLeft.Size = new System.Drawing.Size(160, 369);
             this.pnlLeft.TabIndex = 0;
             // 
             // dataGridView
@@ -98,14 +99,14 @@ namespace Uppgift3
             this.dataGridView.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Gainsboro;
             this.dataGridView.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(160, 268);
+            this.dataGridView.Size = new System.Drawing.Size(160, 290);
             this.dataGridView.TabIndex = 1;
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
             // pnlTop
             // 
             this.pnlTop.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pnlTop.Controls.Add(this.button2);
+            this.pnlTop.Controls.Add(this.btnAddContact);
             this.pnlTop.Controls.Add(this.txtSearch);
             this.pnlTop.Controls.Add(this.lblTitle);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
@@ -113,6 +114,21 @@ namespace Uppgift3
             this.pnlTop.Name = "pnlTop";
             this.pnlTop.Size = new System.Drawing.Size(160, 79);
             this.pnlTop.TabIndex = 0;
+            // 
+            // btnAddContact
+            // 
+            this.btnAddContact.FlatAppearance.BorderColor = System.Drawing.Color.SlateGray;
+            this.btnAddContact.FlatAppearance.BorderSize = 0;
+            this.btnAddContact.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btnAddContact.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.btnAddContact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddContact.Image = global::Uppgift3.Properties.Resources.Expand_03_WF;
+            this.btnAddContact.Location = new System.Drawing.Point(123, 1);
+            this.btnAddContact.Name = "btnAddContact";
+            this.btnAddContact.Size = new System.Drawing.Size(36, 33);
+            this.btnAddContact.TabIndex = 15;
+            this.btnAddContact.UseVisualStyleBackColor = true;
+            this.btnAddContact.Click += new System.EventHandler(this.btnAddContact_Click);
             // 
             // txtSearch
             // 
@@ -138,6 +154,8 @@ namespace Uppgift3
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
+            this.panel1.Controls.Add(this.txtName);
+            this.panel1.Controls.Add(this.lblContactName);
             this.panel1.Controls.Add(this.btnBeginEdit);
             this.panel1.Controls.Add(this.btnFinishEdit);
             this.panel1.Controls.Add(this.btnCancelEdit);
@@ -153,169 +171,27 @@ namespace Uppgift3
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.lblContactName);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(160, 0);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel1.Size = new System.Drawing.Size(267, 347);
+            this.panel1.Size = new System.Drawing.Size(267, 369);
             this.panel1.TabIndex = 1;
             // 
-            // txtOtherAddress
+            // btnBeginEdit
             // 
-            this.txtOtherAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
-            this.txtOtherAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtOtherAddress.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtOtherAddress.Location = new System.Drawing.Point(17, 315);
-            this.txtOtherAddress.Name = "txtOtherAddress";
-            this.txtOtherAddress.ReadOnly = true;
-            this.txtOtherAddress.Size = new System.Drawing.Size(194, 20);
-            this.txtOtherAddress.TabIndex = 13;
-            this.txtOtherAddress.Text = "...";
-            // 
-            // txtWorkAddress
-            // 
-            this.txtWorkAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
-            this.txtWorkAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtWorkAddress.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtWorkAddress.Location = new System.Drawing.Point(17, 269);
-            this.txtWorkAddress.Name = "txtWorkAddress";
-            this.txtWorkAddress.ReadOnly = true;
-            this.txtWorkAddress.Size = new System.Drawing.Size(194, 20);
-            this.txtWorkAddress.TabIndex = 12;
-            this.txtWorkAddress.Text = "...";
-            // 
-            // txtHomeAddress
-            // 
-            this.txtHomeAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
-            this.txtHomeAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtHomeAddress.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtHomeAddress.Location = new System.Drawing.Point(17, 224);
-            this.txtHomeAddress.Name = "txtHomeAddress";
-            this.txtHomeAddress.ReadOnly = true;
-            this.txtHomeAddress.Size = new System.Drawing.Size(194, 20);
-            this.txtHomeAddress.TabIndex = 11;
-            this.txtHomeAddress.Text = "...";
-            // 
-            // label4
-            // 
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(13, 289);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(158, 26);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Address, Annat";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label5
-            // 
-            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(12, 243);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(120, 26);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Address, Arbete";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label6
-            // 
-            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(13, 197);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(120, 26);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Address, Hem";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtWorkPhone
-            // 
-            this.txtWorkPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
-            this.txtWorkPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtWorkPhone.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtWorkPhone.Location = new System.Drawing.Point(17, 161);
-            this.txtWorkPhone.Name = "txtWorkPhone";
-            this.txtWorkPhone.ReadOnly = true;
-            this.txtWorkPhone.Size = new System.Drawing.Size(194, 20);
-            this.txtWorkPhone.TabIndex = 7;
-            this.txtWorkPhone.Text = "...";
-            // 
-            // txtHomePhone
-            // 
-            this.txtHomePhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
-            this.txtHomePhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtHomePhone.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtHomePhone.Location = new System.Drawing.Point(17, 115);
-            this.txtHomePhone.Name = "txtHomePhone";
-            this.txtHomePhone.ReadOnly = true;
-            this.txtHomePhone.Size = new System.Drawing.Size(194, 20);
-            this.txtHomePhone.TabIndex = 6;
-            this.txtHomePhone.Text = "...";
-            // 
-            // txtMobilePhone
-            // 
-            this.txtMobilePhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
-            this.txtMobilePhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtMobilePhone.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtMobilePhone.Location = new System.Drawing.Point(17, 70);
-            this.txtMobilePhone.Name = "txtMobilePhone";
-            this.txtMobilePhone.ReadOnly = true;
-            this.txtMobilePhone.Size = new System.Drawing.Size(196, 20);
-            this.txtMobilePhone.TabIndex = 5;
-            this.txtMobilePhone.Text = "...";
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(13, 135);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(158, 26);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Mobiltelefon, Arbete";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(12, 89);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 26);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Telefon, Hem";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(13, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 26);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Mobiltelefon";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblContactName
-            // 
-            this.lblContactName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
-            this.lblContactName.Font = new System.Drawing.Font("Segoe UI", 18F);
-            this.lblContactName.ForeColor = System.Drawing.Color.White;
-            this.lblContactName.Location = new System.Drawing.Point(0, 0);
-            this.lblContactName.Name = "lblContactName";
-            this.lblContactName.Size = new System.Drawing.Size(183, 35);
-            this.lblContactName.TabIndex = 1;
-            this.lblContactName.Text = "Namn";
-            this.lblContactName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBeginEdit.FlatAppearance.BorderColor = System.Drawing.Color.SlateGray;
+            this.btnBeginEdit.FlatAppearance.BorderSize = 0;
+            this.btnBeginEdit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btnBeginEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnBeginEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBeginEdit.Image = global::Uppgift3.Properties.Resources.Contact_Edit_WF2;
+            this.btnBeginEdit.Location = new System.Drawing.Point(227, 5);
+            this.btnBeginEdit.Name = "btnBeginEdit";
+            this.btnBeginEdit.Size = new System.Drawing.Size(36, 31);
+            this.btnBeginEdit.TabIndex = 14;
+            this.btnBeginEdit.UseVisualStyleBackColor = true;
+            this.btnBeginEdit.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnFinishEdit
             // 
@@ -349,50 +225,190 @@ namespace Uppgift3
             this.btnCancelEdit.Visible = false;
             this.btnCancelEdit.Click += new System.EventHandler(this.btnCancelEdit_Click);
             // 
-            // btnBeginEdit
+            // txtOtherAddress
             // 
-            this.btnBeginEdit.FlatAppearance.BorderColor = System.Drawing.Color.SlateGray;
-            this.btnBeginEdit.FlatAppearance.BorderSize = 0;
-            this.btnBeginEdit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.btnBeginEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnBeginEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBeginEdit.Image = global::Uppgift3.Properties.Resources.Contact_Edit_WF2;
-            this.btnBeginEdit.Location = new System.Drawing.Point(227, 5);
-            this.btnBeginEdit.Name = "btnBeginEdit";
-            this.btnBeginEdit.Size = new System.Drawing.Size(36, 31);
-            this.btnBeginEdit.TabIndex = 14;
-            this.btnBeginEdit.UseVisualStyleBackColor = true;
-            this.btnBeginEdit.Click += new System.EventHandler(this.button1_Click);
+            this.txtOtherAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
+            this.txtOtherAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtOtherAddress.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtOtherAddress.Location = new System.Drawing.Point(12, 321);
+            this.txtOtherAddress.Name = "txtOtherAddress";
+            this.txtOtherAddress.ReadOnly = true;
+            this.txtOtherAddress.Size = new System.Drawing.Size(194, 20);
+            this.txtOtherAddress.TabIndex = 13;
+            this.txtOtherAddress.Text = "...";
             // 
-            // button2
+            // txtWorkAddress
             // 
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.SlateGray;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = global::Uppgift3.Properties.Resources.Expand_03_WF;
-            this.button2.Location = new System.Drawing.Point(123, 1);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(36, 33);
-            this.button2.TabIndex = 15;
-            this.button2.UseVisualStyleBackColor = true;
+            this.txtWorkAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
+            this.txtWorkAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtWorkAddress.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtWorkAddress.Location = new System.Drawing.Point(12, 275);
+            this.txtWorkAddress.Name = "txtWorkAddress";
+            this.txtWorkAddress.ReadOnly = true;
+            this.txtWorkAddress.Size = new System.Drawing.Size(194, 20);
+            this.txtWorkAddress.TabIndex = 12;
+            this.txtWorkAddress.Text = "...";
             // 
-            // MainView
+            // txtHomeAddress
+            // 
+            this.txtHomeAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
+            this.txtHomeAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtHomeAddress.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtHomeAddress.Location = new System.Drawing.Point(12, 230);
+            this.txtHomeAddress.Name = "txtHomeAddress";
+            this.txtHomeAddress.ReadOnly = true;
+            this.txtHomeAddress.Size = new System.Drawing.Size(194, 20);
+            this.txtHomeAddress.TabIndex = 11;
+            this.txtHomeAddress.Text = "...";
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(8, 295);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(158, 26);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Address, Annat";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(7, 249);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(120, 26);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Address, Arbete";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label6
+            // 
+            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(8, 203);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(120, 26);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Address, Hem";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtWorkPhone
+            // 
+            this.txtWorkPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
+            this.txtWorkPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtWorkPhone.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtWorkPhone.Location = new System.Drawing.Point(11, 167);
+            this.txtWorkPhone.Name = "txtWorkPhone";
+            this.txtWorkPhone.ReadOnly = true;
+            this.txtWorkPhone.Size = new System.Drawing.Size(194, 20);
+            this.txtWorkPhone.TabIndex = 7;
+            this.txtWorkPhone.Text = "...";
+            // 
+            // txtHomePhone
+            // 
+            this.txtHomePhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
+            this.txtHomePhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtHomePhone.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtHomePhone.Location = new System.Drawing.Point(12, 122);
+            this.txtHomePhone.Name = "txtHomePhone";
+            this.txtHomePhone.ReadOnly = true;
+            this.txtHomePhone.Size = new System.Drawing.Size(194, 20);
+            this.txtHomePhone.TabIndex = 6;
+            this.txtHomePhone.Text = "...";
+            // 
+            // txtMobilePhone
+            // 
+            this.txtMobilePhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
+            this.txtMobilePhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtMobilePhone.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtMobilePhone.Location = new System.Drawing.Point(12, 77);
+            this.txtMobilePhone.Name = "txtMobilePhone";
+            this.txtMobilePhone.ReadOnly = true;
+            this.txtMobilePhone.Size = new System.Drawing.Size(196, 20);
+            this.txtMobilePhone.TabIndex = 5;
+            this.txtMobilePhone.Text = "...";
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(8, 142);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(158, 26);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Mobiltelefon, Arbete";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(7, 96);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(120, 26);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Telefon, Hem";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(8, 50);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(120, 26);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Mobiltelefon";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblContactName
+            // 
+            this.lblContactName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
+            this.lblContactName.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.lblContactName.ForeColor = System.Drawing.Color.White;
+            this.lblContactName.Location = new System.Drawing.Point(0, 0);
+            this.lblContactName.Name = "lblContactName";
+            this.lblContactName.Size = new System.Drawing.Size(183, 35);
+            this.lblContactName.TabIndex = 1;
+            this.lblContactName.Text = "Namn";
+            this.lblContactName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtName
+            // 
+            this.txtName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtName.Font = new System.Drawing.Font("Segoe UI", 16F);
+            this.txtName.Location = new System.Drawing.Point(6, 8);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(177, 29);
+            this.txtName.TabIndex = 16;
+            this.txtName.Text = "Namn";
+            this.txtName.Visible = false;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+            // 
+            // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.BorderColor = System.Drawing.Color.White;
+            this.BorderColor = System.Drawing.Color.Silver;
             this.CaptionAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.CaptionButtonColor = System.Drawing.Color.Black;
             this.CaptionButtonHoverColor = System.Drawing.Color.Gray;
             this.CaptionForeColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(427, 347);
+            this.ClientSize = new System.Drawing.Size(427, 369);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlLeft);
             this.DropShadow = true;
-            this.Name = "MainView";
+            this.Name = "View";
             this.ShowIcon = false;
             this.ShowMaximizeBox = false;
             this.Text = "Kontaktbok";
@@ -428,8 +444,9 @@ namespace Uppgift3
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnBeginEdit;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAddContact;
         private System.Windows.Forms.Button btnCancelEdit;
         private System.Windows.Forms.Button btnFinishEdit;
+        private System.Windows.Forms.TextBox txtName;
     }
 }

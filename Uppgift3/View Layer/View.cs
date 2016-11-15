@@ -29,9 +29,21 @@ namespace Uppgift3
             m = new Model(this);
             m.GetNameData();
         }
-        public void DataSource(string value) { dataGridView.Rows.Add(value); }
-        private void dataGridView_SelectionChanged(object sender, EventArgs e) { m.GetContactInfo(dataGridView.CurrentCell.Value.ToString()); }
-        private void button1_Click(object sender, EventArgs e) { btnFinishEdit.Visible = true; btnFinishEdit.BringToFront(); btnCancelEdit.Visible = true; SetTextBoxEnabled(false, Color.WhiteSmoke); }
+        public void DataSource(string value)
+        {
+            dataGridView.Rows.Add(value);
+        }
+        private void dataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            m.GetContactInfo(dataGridView.CurrentCell.Value.ToString());
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            btnFinishEdit.Visible = true;
+            btnFinishEdit.BringToFront();
+            btnCancelEdit.Visible = true;
+            SetTextBoxEnabled(false, Color.WhiteSmoke);
+        }
         public void SetTextBoxEnabled(bool trueFalse, Color color)
         {
             txtOtherAddress.ReadOnly = trueFalse;
@@ -40,6 +52,7 @@ namespace Uppgift3
             txtWorkPhone.ReadOnly = trueFalse;
             txtMobilePhone.ReadOnly = trueFalse;
             txtHomePhone.ReadOnly = trueFalse;
+            
             txtOtherAddress.BackColor = color;
             txtWorkAddress.BackColor = color;
             txtHomeAddress.BackColor = color;
@@ -49,26 +62,51 @@ namespace Uppgift3
         }
         private void btnFinishEdit_Click(object sender, EventArgs e)
         {
+            lblContactName.Visible = true;
+
+            txtName.Visible = false;
+
             btnCancelEdit.Visible = false; btnFinishEdit.Visible = false;
             SetTextBoxEnabled(true, Color.FromArgb(41, 143, 204));
             m.EditContact(lblContactName.Text);
         }
         private void btnCancelEdit_Click(object sender, EventArgs e)
         {
+            lblContactName.Visible = true;
+
+            txtName.Visible = false;
+
             btnCancelEdit.Visible = false; btnFinishEdit.Visible = false;
             SetTextBoxEnabled(true, Color.FromArgb(41, 143, 204));
             m.GetContactInfo(dataGridView.CurrentCell.Value.ToString());
         }
-    }
-    public interface IView
-    {
-        void DataSource(string value);
-        string setTxtPhoneWork { get; set; }
-        string setTxtPhoneHome { get; set; }
-        string setTxtMobilePhone { get; set; }
-        string setLblTitleName { get; set; }
-        string setTxtHomeAddress { get; set; }
-        string setTxtWorkAddress { get; set; }
-        string setTxtOtherAddress { get; set; }
+
+        private void btnAddContact_Click(object sender, EventArgs e)
+        {
+            lblContactName.Visible = false;
+            txtName.Visible = true;
+            txtName.BringToFront();
+
+            btnFinishEdit.Visible = true;
+            btnFinishEdit.BringToFront();
+            btnCancelEdit.Visible = true;
+
+            SetTextBoxEnabled(false, Color.WhiteSmoke);
+
+            txtOtherAddress.Text = null;
+            txtWorkAddress.Text = null;
+            txtHomeAddress.Text = null;
+            txtWorkPhone.Text = null;
+            txtMobilePhone.Text = null;
+            txtHomePhone.Text = null;
+
+
+
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

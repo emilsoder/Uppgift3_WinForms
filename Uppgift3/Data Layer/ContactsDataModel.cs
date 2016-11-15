@@ -1,10 +1,10 @@
+using System;
+using System.Data.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+
 namespace Uppgift3.Data_Layer
 {
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-
     public partial class ContactsDataModel : DbContext
     {
         public ContactsDataModel() : base("name=ContactsDataModel")
