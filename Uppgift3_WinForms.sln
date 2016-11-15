@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uppgift3", "Uppgift3\Uppgif
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dlls", "dlls", "{33965284-5604-4379-99F9-0A8800408D7F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dls", "dls", "{F56B4A1E-3180-4F69-BB17-0D72397A0029}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,5 +22,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F56B4A1E-3180-4F69-BB17-0D72397A0029} = {33965284-5604-4379-99F9-0A8800408D7F}
 	EndGlobalSection
 EndGlobal
