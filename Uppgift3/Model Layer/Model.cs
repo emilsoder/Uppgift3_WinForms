@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Uppgift3.Data_Layer;
 
@@ -15,12 +14,27 @@ namespace Uppgift3.Model_Layer
             view = _view;
         }
 
+        public void GetDataCollection()
+        {
+            var db = new ContactsDataModel();
+
+            var dataList = new List<string>();
+
+            foreach (Contacts item in (from c in db.Contacts
+                                       select c).ToList())
+            {
+                dataList.Add((string.Format("{0} {1}", item.FirstName, item.LastName)));
+            }
+            view.GetContactNames(dataList);
+        }
+
         public void GetNameData()
         {
             var db = new ContactsDataModel();
             try
             {
-                foreach (Contacts item in (from c in db.Contacts select c).ToList())
+                foreach (Contacts item in (from c in db.Contacts
+                                           select c).ToList())
                 {
                     Task.Factory.StartNew(() => view.DataSource(string.Format("{0} {1}", item.FirstName, item.LastName))).Wait();
                 }
@@ -40,13 +54,10 @@ namespace Uppgift3.Model_Layer
             var db = new ContactsDataModel();
             try
             {
-                string _name = name.Remove(name.LastIndexOf(' '));
-                string _lastName = name.Remove(0, name.LastIndexOf(' ')).Trim();
+                var _name = name.Remove(name.LastIndexOf(' '));
+                var _lastName = name.Remove(0, name.LastIndexOf(' ')).Trim();
 
-                foreach (var item in (from c in db.Contacts
-                                      where c.FirstName == _name
-                                      && c.LastName == _lastName
-                                      select c).ToList())
+                foreach (var item in (from c in db.Contacts where c.FirstName == _name && c.LastName == _lastName select c).ToList())
                 {
                     view.setTxtContactName = string.Format("{0} {1}", item.FirstName, item.LastName);
                     view.setTxtMobilePhone = item.MobilePhone;
@@ -72,15 +83,17 @@ namespace Uppgift3.Model_Layer
             var db = new ContactsDataModel();
             try
             {
-                int ove = name.LastIndexOf(' ');
-                string _name = name.Remove(ove);
-                string _lastName = name.Remove(0, ove).Trim();
+                var ove = name.LastIndexOf(' ');
+                var _name = name.Remove(ove);
+                var _lastName = name.Remove(0, ove).Trim();
 
                 var resultat = from c in db.Contacts
-                               where c.FirstName == _name && c.LastName == _lastName select c;
+                               where c.FirstName == _name && c.LastName == _lastName
+                               select c;
                 resultat.Single().MobilePhone = view.setTxtMobilePhone;
                 resultat.Single().WorkPhone = view.setTxtPhoneWork;
                 resultat.Single().HomePhone = view.setTxtPhoneHome;
+
                 resultat.Single().HomeAddress = view.setTxtHomeAddress;
                 resultat.Single().WorkAddress = view.setTxtWorkAddress;
                 resultat.Single().OtherAddress = view.setTxtOtherAddress;
@@ -96,6 +109,27 @@ namespace Uppgift3.Model_Layer
                     t1.Wait();
                 }
             }
+        }
+
+        public void AddContact(string _ContactName, string _MobilePhone, string _WorkPhone, string _HomePhone, string _HomeAddress, string _WorkAddress, string _OtherAddress)
+        {
+            var db = new ContactsDataModel();
+            var c = new Contacts()
+            {
+                FirstName = _ContactName.Remove(_ContactName.LastIndexOf(' ')),
+                LastName = _ContactName.Remove(0, _ContactName.LastIndexOf(' ')).Trim(),
+                MobilePhone = _MobilePhone,
+                WorkPhone = _WorkPhone,
+                HomePhone = _HomePhone,
+                HomeAddress = _HomeAddress,
+                WorkAddress = _WorkAddress,
+                OtherAddress = _OtherAddress
+            };
+
+            var t1 = Task.Factory.StartNew(() => db.Contacts.Add(c));
+            t1.Wait();
+            var t = Task.Factory.StartNew(() => db.SaveChanges());
+            t.Wait();
         }
     }
 }

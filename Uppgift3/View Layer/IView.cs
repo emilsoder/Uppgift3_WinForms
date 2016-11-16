@@ -13,5 +13,7 @@ namespace Uppgift3
         string setTxtHomeAddress { get; set; }
         string setTxtWorkAddress { get; set; }
         string setTxtOtherAddress { get; set; }
+
+        void GetContactNames(List<string> DataSourceList);
     }
 }

@@ -3,11 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Uppgift3.Data_Layer;
 using Uppgift3.Model_Layer;
+using System.Data.Entity;
+using System.Linq;
+
 namespace Uppgift3
 {
     public partial class View : Syncfusion.Windows.Forms.MetroForm, IView
@@ -21,6 +25,7 @@ namespace Uppgift3
             m.GetNameData();
         }
 
+        #region Properties
         public string setTxtContactName
         {
             get { return txtContactName.Text; }
@@ -62,76 +67,124 @@ namespace Uppgift3
 
         public void DataSource(string value)
         {
+
             dataGridView.Rows.Add(value);
         }
+
+        public void GetContactNames(List<string> DataSourceList)
+        {
+            dataGridView.Rows.Clear();
+
+            foreach (var item in DataSourceList.ToString())
+            {
+                dataGridView.Rows.Add(item);
+            }
+        }
+
+        #endregion
+
+        public bool EditMode { get; set; }
+
+
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            m.GetContactInfo(dataGridView.CurrentCell.Value.ToString());
+            try
+            {
+                m.GetContactInfo(dataGridView.CurrentCell.Value.ToString());
+
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(ex.Message);
+            }
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void btnEditContact_Click(object sender, EventArgs e)
         {
-            btnFinishEdit.Visible = true;
-            btnFinishEdit.BringToFront();
-            btnCancelEdit.Visible = true;
+            EditMode = true;
+            btnBeginEdit.Visible = false;
+            btnCompleteOperation.Visible = true;
+            btnCompleteOperation.BringToFront();
+            btnCancelOperation.Visible = true;
             SetTextBoxEnabled(false, Color.WhiteSmoke);
         }
         public void SetTextBoxEnabled(bool _boolValue, Color _color)
         {
             txtContactName.ReadOnly = _boolValue;
 
-            txtOtherAddress.ReadOnly = _boolValue;
-            txtWorkAddress.ReadOnly = _boolValue;
-            txtHomeAddress.ReadOnly = _boolValue;
-
-            txtWorkPhone.ReadOnly = _boolValue;
             txtMobilePhone.ReadOnly = _boolValue;
+            txtWorkPhone.ReadOnly = _boolValue;
             txtHomePhone.ReadOnly = _boolValue;
+
+            txtHomeAddress.ReadOnly = _boolValue;
+            txtWorkAddress.ReadOnly = _boolValue;
+            txtOtherAddress.ReadOnly = _boolValue;
 
             txtContactName.BackColor = _color;
 
+            txtHomeAddress.BackColor = _color;
             txtOtherAddress.BackColor = _color;
             txtWorkAddress.BackColor = _color;
-            txtHomeAddress.BackColor = _color;
 
             txtWorkPhone.BackColor = _color;
             txtMobilePhone.BackColor = _color;
             txtHomePhone.BackColor = _color;
 
         }
-        private void btnFinishEdit_Click(object sender, EventArgs e)
+        private void btnCompleteOperation_Click(object sender, EventArgs e)
         {
-            txtContactName.Visible = false;
+            if (txtContactName.Text != "")
+            {
+                btnCancelOperation.Visible = false;
+                btnCompleteOperation.Visible = false;
+                btnBeginEdit.Visible = true;
 
-            btnCancelEdit.Visible = false; btnFinishEdit.Visible = false;
-            SetTextBoxEnabled(true, Color.FromArgb(41, 143, 204));
-            m.EditContact(txtContactName.Text);
+                SetTextBoxEnabled(true, Color.FromArgb(41, 143, 204));
+
+                if (EditMode == true)
+                {
+                    m.EditContact(txtContactName.Text);
+                }
+                else if (EditMode == false)
+                {
+                    m.AddContact(txtContactName.Text, txtMobilePhone.Text, txtWorkPhone.Text, txtHomePhone.Text, txtHomeAddress.Text, txtWorkAddress.Text, txtOtherAddress.Text);
+                }
+                m.GetDataCollection();
+            }
         }
-        private void btnCancelEdit_Click(object sender, EventArgs e)
+        private void btnCancelOperation_Click(object sender, EventArgs e)
         {
-            txtContactName.Visible = false;
+            btnCancelOperation.Visible = false;
+            btnCompleteOperation.Visible = false;
+            btnBeginEdit.Visible = true;
 
-            btnCancelEdit.Visible = false; btnFinishEdit.Visible = false;
             SetTextBoxEnabled(true, Color.FromArgb(41, 143, 204));
-            m.GetContactInfo(dataGridView.CurrentCell.Value.ToString());
+            //m.GetContactInfo(dataGridView.CurrentCell.Value.ToString());
+            m.GetDataCollection();
         }
 
         private void btnAddContact_Click(object sender, EventArgs e)
         {
             //txtContactName.Visible = true;
             //txtContactName.BringToFront();
+            btnBeginEdit.Visible = false;
 
-            btnFinishEdit.Visible = true;
-            btnFinishEdit.BringToFront();
-            btnCancelEdit.Visible = true;
+            EditMode = false;
+
+            btnCompleteOperation.Visible = true;
+            btnCompleteOperation.BringToFront();
+            btnCancelOperation.Visible = true;
 
             SetTextBoxEnabled(false, Color.WhiteSmoke);
 
-            //txtOtherAddress.Text = null;
-            //txtWorkAddress.Text = null;
-            //txtHomeAddress.Text = null;
-            //txtWorkPhone.Text = null;
-            //txtMobilePhone.Text = null;
-            //txtHomePhone.Text = null;
+            txtOtherAddress.Text = null;
+            txtWorkAddress.Text = null;
+            txtHomeAddress.Text = null;
+            txtWorkPhone.Text = null;
+            txtMobilePhone.Text = null;
+            txtHomePhone.Text = null;
+
+            m.GetDataCollection();
         }
 
         private void txtName_TextChanged(object sender, EventArgs e)

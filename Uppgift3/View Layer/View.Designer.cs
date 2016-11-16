@@ -42,10 +42,12 @@ namespace Uppgift3
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.txtContactName = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnCancelOperation = new System.Windows.Forms.Button();
             this.btnBeginEdit = new System.Windows.Forms.Button();
-            this.btnFinishEdit = new System.Windows.Forms.Button();
-            this.btnCancelEdit = new System.Windows.Forms.Button();
+            this.btnCompleteOperation = new System.Windows.Forms.Button();
             this.txtOtherAddress = new System.Windows.Forms.TextBox();
             this.txtWorkAddress = new System.Windows.Forms.TextBox();
             this.txtHomeAddress = new System.Windows.Forms.TextBox();
@@ -58,14 +60,12 @@ namespace Uppgift3
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.pnlTop.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlLeft
@@ -177,6 +177,16 @@ namespace Uppgift3
             this.panel1.Size = new System.Drawing.Size(442, 369);
             this.panel1.TabIndex = 1;
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.txtContactName);
+            this.panel3.Controls.Add(this.panel2);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(10, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(432, 35);
+            this.panel3.TabIndex = 16;
+            // 
             // txtContactName
             // 
             this.txtContactName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(143)))), ((int)(((byte)(204)))));
@@ -190,8 +200,34 @@ namespace Uppgift3
             this.txtContactName.Size = new System.Drawing.Size(360, 32);
             this.txtContactName.TabIndex = 16;
             this.txtContactName.Text = "Namn";
-            this.txtContactName.Visible = false;
             this.txtContactName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btnCancelOperation);
+            this.panel2.Controls.Add(this.btnBeginEdit);
+            this.panel2.Controls.Add(this.btnCompleteOperation);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(360, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(72, 35);
+            this.panel2.TabIndex = 2;
+            // 
+            // btnCancelOperation
+            // 
+            this.btnCancelOperation.FlatAppearance.BorderColor = System.Drawing.Color.SlateGray;
+            this.btnCancelOperation.FlatAppearance.BorderSize = 0;
+            this.btnCancelOperation.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btnCancelOperation.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCancelOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelOperation.Image = global::Uppgift3.Properties.Resources.Cancel;
+            this.btnCancelOperation.Location = new System.Drawing.Point(12, 3);
+            this.btnCancelOperation.Name = "btnCancelOperation";
+            this.btnCancelOperation.Size = new System.Drawing.Size(25, 25);
+            this.btnCancelOperation.TabIndex = 15;
+            this.btnCancelOperation.UseVisualStyleBackColor = true;
+            this.btnCancelOperation.Visible = false;
+            this.btnCancelOperation.Click += new System.EventHandler(this.btnCancelOperation_Click);
             // 
             // btnBeginEdit
             // 
@@ -206,39 +242,23 @@ namespace Uppgift3
             this.btnBeginEdit.Size = new System.Drawing.Size(25, 25);
             this.btnBeginEdit.TabIndex = 14;
             this.btnBeginEdit.UseVisualStyleBackColor = true;
-            this.btnBeginEdit.Click += new System.EventHandler(this.button1_Click);
+            this.btnBeginEdit.Click += new System.EventHandler(this.btnEditContact_Click);
             // 
-            // btnFinishEdit
+            // btnCompleteOperation
             // 
-            this.btnFinishEdit.FlatAppearance.BorderColor = System.Drawing.Color.SlateGray;
-            this.btnFinishEdit.FlatAppearance.BorderSize = 0;
-            this.btnFinishEdit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.btnFinishEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnFinishEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFinishEdit.Image = global::Uppgift3.Properties.Resources.Untitled1;
-            this.btnFinishEdit.Location = new System.Drawing.Point(43, 3);
-            this.btnFinishEdit.Name = "btnFinishEdit";
-            this.btnFinishEdit.Size = new System.Drawing.Size(25, 25);
-            this.btnFinishEdit.TabIndex = 15;
-            this.btnFinishEdit.UseVisualStyleBackColor = true;
-            this.btnFinishEdit.Visible = false;
-            this.btnFinishEdit.Click += new System.EventHandler(this.btnFinishEdit_Click);
-            // 
-            // btnCancelEdit
-            // 
-            this.btnCancelEdit.FlatAppearance.BorderColor = System.Drawing.Color.SlateGray;
-            this.btnCancelEdit.FlatAppearance.BorderSize = 0;
-            this.btnCancelEdit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.btnCancelEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnCancelEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelEdit.Image = global::Uppgift3.Properties.Resources.Cancel;
-            this.btnCancelEdit.Location = new System.Drawing.Point(12, 3);
-            this.btnCancelEdit.Name = "btnCancelEdit";
-            this.btnCancelEdit.Size = new System.Drawing.Size(25, 25);
-            this.btnCancelEdit.TabIndex = 15;
-            this.btnCancelEdit.UseVisualStyleBackColor = true;
-            this.btnCancelEdit.Visible = false;
-            this.btnCancelEdit.Click += new System.EventHandler(this.btnCancelEdit_Click);
+            this.btnCompleteOperation.FlatAppearance.BorderColor = System.Drawing.Color.SlateGray;
+            this.btnCompleteOperation.FlatAppearance.BorderSize = 0;
+            this.btnCompleteOperation.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btnCompleteOperation.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCompleteOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCompleteOperation.Image = global::Uppgift3.Properties.Resources.Untitled1;
+            this.btnCompleteOperation.Location = new System.Drawing.Point(43, 3);
+            this.btnCompleteOperation.Name = "btnCompleteOperation";
+            this.btnCompleteOperation.Size = new System.Drawing.Size(25, 25);
+            this.btnCompleteOperation.TabIndex = 15;
+            this.btnCompleteOperation.UseVisualStyleBackColor = true;
+            this.btnCompleteOperation.Visible = false;
+            this.btnCompleteOperation.Click += new System.EventHandler(this.btnCompleteOperation_Click);
             // 
             // txtOtherAddress
             // 
@@ -384,27 +404,6 @@ namespace Uppgift3
             this.label1.Text = "Mobiltelefon";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnCancelEdit);
-            this.panel2.Controls.Add(this.btnBeginEdit);
-            this.panel2.Controls.Add(this.btnFinishEdit);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(360, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(72, 35);
-            this.panel2.TabIndex = 2;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.txtContactName);
-            this.panel3.Controls.Add(this.panel2);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(10, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(432, 35);
-            this.panel3.TabIndex = 16;
-            // 
             // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -429,9 +428,9 @@ namespace Uppgift3
             this.pnlTop.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -458,8 +457,8 @@ namespace Uppgift3
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnBeginEdit;
         private System.Windows.Forms.Button btnAddContact;
-        private System.Windows.Forms.Button btnCancelEdit;
-        private System.Windows.Forms.Button btnFinishEdit;
+        private System.Windows.Forms.Button btnCancelOperation;
+        private System.Windows.Forms.Button btnCompleteOperation;
         private System.Windows.Forms.TextBox txtContactName;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
